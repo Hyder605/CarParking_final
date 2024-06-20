@@ -166,11 +166,11 @@ def CarParking():
                                 p1[slot_rows][last_index]=None
                                 # print(p1[slot_rows])
                                 for i in range(len(p1[slot_rows])-2, -1, -1): #or reversed(range(p1[slot_rows])-1) #index===>2,1,0
-                                    # print(i)   ===>2,1,0
+                                    print(i)
                                     # If the current item is not None
                                     if p1[slot_rows][i] is not None:
                                         # Move the item to the right until it finds a Not None value or reaches the end
-                                        j = i + 1   #====>3,2,1
+                                        j = i + 1
                                         print(j)
                                         while j < len(p1[slot_rows]) and p1[slot_rows][j] is None:
                                             p1[slot_rows][j],p1[slot_rows][j-1] = p1[slot_rows][j-1], p1[slot_rows][j]
@@ -180,39 +180,22 @@ def CarParking():
                                 for i in (range(len(veh_ahead_list))):
                                     # print("vehicle is in the First slot",i)
                                     for empty_iter in (range(len(p1))):
-                                       
                                         if None in p1[empty_iter] and veh not in p1[empty_iter]:
                                             # print(p1[empty_iter])
                                             ## moving the vehices ahead of the required Veh to remove to other Empty slot , so that there should be vacant space
                                             p1[empty_iter].append(veh_ahead_list[i][1])
                                             p1[slot_rows].pop()
                                             p1[slot_rows].insert(0, None)
-                                            
+                                            # print(p1[slot_rows])
+                                            # print(p1[empty_iter])
                                             p1[empty_iter].pop(0)
                                             # print(p1[empty_iter])
                                             break
                                         # print("empty_iter", empty_iter)
-                                        elif None in p2[empty_iter]:
-                                          
-                                            p2[empty_iter].insert(0,veh_ahead_list[i][1])
-                                            p1[slot_rows].pop()
-                                            p1[slot_rows].insert(0, None)
-                                            
-                                            p2[empty_iter].pop()
-                                            # print("---------",p1[slot_rows])
-                                            # print("==========",p2[empty_iter])
-                                            # p1[slot_rows].pop(0)
-                                            # p1[slot_rows].insert(0, None)
-                                            # print("---------",p1[slot_rows])
-                                            # print("==========",p2[empty_iter])
-
-                                            break
                                 
                                 p1[slot_rows].pop() ## Required veh is removed here
                                 p1[slot_rows].insert(0, None)
                                 
-                                # print("---------",p1[slot_rows])
-                                # print("==========",p2[empty_iter])
                                                 
                             save_data(parking_data, filename)
                             break
@@ -274,21 +257,9 @@ def CarParking():
                                                         # print(p2[empty_iter])
                                                         break
                                                     # print("empty_iter", empty_iter)
-                                                    elif None in p1[empty_iter]:
-                                                        p1[empty_iter].append(veh_behind_list[i][1])
-                                                        p2[slot_rows].pop(0)
-                                                        p2[slot_rows].append(None)
-                                                        p1[empty_iter].pop(0)
-
-                                                        # print("---------",p1[slot_rows])
-                                                        # print("==========",p2[empty_iter])
-                                                        break
-
                                             
                                             p2[slot_rows].pop(0)
                                             p2[slot_rows].append(None)
-                                            # print("---------",p1[slot_rows])
-                                            # print("==========",p2[empty_iter])
                                             
                                 save_data(parking_data, filename)
                                 break
