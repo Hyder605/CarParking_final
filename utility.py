@@ -37,3 +37,48 @@ def parking_table(filename):
             else:
                 print("None".ljust(6), end=" ")  # Print 'None' with proper spacing
         print()
+
+
+
+# Function to find the coordinates of a specific car in the data structure
+def find_car_position(data, car):
+    for parking_lot in data:
+        for i, row in enumerate(data[parking_lot]):
+            for j, val in enumerate(row):
+                if val == car:
+                    print(parking_lot,i,j)
+                    return parking_lot, i, j
+    return None, None, None  # Car not found
+
+# Function to find the nearest null value to a given position
+# def find_nearest_null(data, start_p, start_i, start_j):
+#     nearest_distance = float('inf')
+#     nearest_position = None
+    
+#     for p in data:
+#         for i, row in enumerate(data[p]):
+#             for j, val in enumerate(row):
+#                 if val is None:
+#                     distance = abs(start_i - i) + abs(start_j - j)
+#                     if distance < nearest_distance:
+#                         nearest_distance = distance
+#                         nearest_position = (p, i, j)
+    
+#     return nearest_position
+
+def find_nearest_null(data, start_p, start_i, start_j):
+    nearest_distance = float('inf')
+    nearest_position = None
+
+    for p in data:
+        for i, row in enumerate(data[p]):
+            if i == start_i and p == start_p:  # Skip the same row
+                continue
+            for j, val in enumerate(row):
+                if val is None:
+                    distance = abs(start_i - i) + abs(start_j - j)
+                    if distance < nearest_distance:
+                        nearest_distance = distance
+                        nearest_position = (p, i, j)
+
+    return nearest_position
