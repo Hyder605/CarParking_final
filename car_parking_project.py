@@ -306,4 +306,71 @@ print("========================================================")
 CarParking()
 print("========================================================")
 print("                     AFTER                             ")
-parking_table("parking_data.json")
+parking_table("parking_data.json
+
+&************************************************************&
+
+data = {
+    "p1": [
+        [None, None, "car3"],
+        ["car9", "car11", "car13"],
+        ["car17", "car19", "car21"],
+        ["car5", "car122", "car45"]
+    ],
+    "p2": [
+        ["car8", "car6", "car4"],
+        ["car16", "car14", "car12"],
+        ["car24", "car22", "car20"],
+        [None, None, None]
+    ]
+}
+
+target_car = "car17"
+
+# Function to find the coordinates of a specific car in the data structure
+def find_car_position(data, car):
+    for p in data:
+        for i, row in enumerate(data[p]):
+            for j, val in enumerate(row):
+                if val == car:
+                    print(p,i,j)
+                    return p, i, j
+    return None, None, None  # Car not found
+
+# Function to find the nearest null value to a given position
+def find_nearest_null(data, start_p, start_i, start_j):
+    nearest_distance = float('inf')
+    nearest_position = None
+    
+    for p in data:
+        for i, row in enumerate(data[p]):
+            for j, val in enumerate(row):
+                if val is None:
+                    distance = abs(start_i - i) + abs(start_j - j)
+                    if distance < nearest_distance:
+                        nearest_distance = distance
+                        nearest_position = (p, i, j)
+    
+    return nearest_position
+
+# Find current position of target car
+current_p, current_i, current_j = find_car_position(data, target_car)
+
+if current_p is None:
+    print(f"Could not find {target_car} in data.")
+else:
+    # Find nearest null position
+    nearest_null_position = find_nearest_null(data, current_p, current_i, current_j)
+    
+    if nearest_null_position is None:
+        print(f"No null value found near {target_car}.")
+    else:
+        # Perform the move
+        nearest_p, nearest_i, nearest_j = nearest_null_position
+        data[current_p][current_i][current_j] = None
+        data[nearest_p][nearest_i][nearest_j] = target_car
+        
+        print(f"Moved {target_car} from {current_p}[{current_i}][{current_j}] to {nearest_p}[{nearest_i}][{nearest_j}].")
+        print("Updated data:")
+        print(data)
+
