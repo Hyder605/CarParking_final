@@ -50,33 +50,19 @@ def find_car_position(data, car):
                     return parking_lot, i, j
     return None, None, None  # Car not found
 
-# Function to find the nearest null value to a given position
-# def find_nearest_null(data, start_p, start_i, start_j):
-#     nearest_distance = float('inf')
-#     nearest_position = None
-    
-#     for p in data:
-#         for i, row in enumerate(data[p]):
-#             for j, val in enumerate(row):
-#                 if val is None:
-#                     distance = abs(start_i - i) + abs(start_j - j)
-#                     if distance < nearest_distance:
-#                         nearest_distance = distance
-#                         nearest_position = (p, i, j)
-    
-#     return nearest_position
 
-def find_nearest_null(data, start_p, start_i, start_j):
+
+def find_nearest_null(data, parking_no, row_no, veh_loc):
     nearest_distance = float('inf')
     nearest_position = None
 
     for p in data:
         for i, row in enumerate(data[p]):
-            if i == start_i and p == start_p:  # Skip the same row
+            if i == row_no and p == parking_no:  # Skip the same row
                 continue
             for j, val in enumerate(row):
                 if val is None:
-                    distance = abs(start_i - i) + abs(start_j - j)
+                    distance = abs(row_no - i) + abs(veh_loc - j)
                     if distance < nearest_distance:
                         nearest_distance = distance
                         nearest_position = (p, i, j)

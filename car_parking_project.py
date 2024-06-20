@@ -188,13 +188,7 @@ def CarParking():
                                     nearest_null_position = find_nearest_null(parking_data, veh_lot,veh_row,veh_pos)
                                     nearest_parking, nearest_row, nearest_spot = nearest_null_position
                                     # print(nearest_parking)
-                                    # print("==========",parking_data[nearest_parking][nearest_row])
-
-
-                                    # print("nearest_null_position", nearest_null_position)
-                                    # print(parking_data[nearest_parking][nearest_row])
-                                    
-                                    # print("vehicle is in the First slot",i)
+                                 
                                     for empty_iter in (range(len(p1))):
 
                                         if None in parking_data[nearest_parking][nearest_row] and veh not in parking_data[nearest_parking][nearest_row]:
@@ -217,17 +211,7 @@ def CarParking():
                                                 parking_data[nearest_parking][nearest_row].pop()
                                                 # print(parking_data[nearest_parking][nearest_row])
                                                 break
-                                        # print("empty_iter", empty_iter)
-                                        # elif None in p2[empty_iter]:
-                                          
-                                        #     p2[empty_iter].insert(0,veh_ahead_list[i][1])
-                                        #     p1[slot_rows].pop()
-                                        #     p1[slot_rows].insert(0, None)
-                                            
-                                        #     p2[empty_iter].pop()
-                                            
-                                        #     break
-                                
+                                     
                                 p1[slot_rows].pop() ## Required veh is removed here
                                 p1[slot_rows].insert(0, None)
                                 
@@ -306,17 +290,6 @@ def CarParking():
                                                             parking_data[nearest_parking][nearest_row].pop()
                                                             # print(p2[empty_iter])
                                                             break
-                                                    # print("empty_iter", empty_iter)
-                                                    # elif None in p1[empty_iter]:
-                                                    #     p1[empty_iter].append(veh_behind_list[i][1])
-                                                    #     p2[slot_rows].pop(0)
-                                                    #     p2[slot_rows].append(None)
-                                                    #     p1[empty_iter].pop(0)
-
-                                                    #     # print("---------",p1[slot_rows])
-                                                    #     # print("==========",p2[empty_iter])
-                                                    #     break
-
                                             
                                             p2[slot_rows].pop(0)
                                             p2[slot_rows].append(None)
@@ -325,10 +298,7 @@ def CarParking():
                                             
                                 save_data(parking_data, filename)
                                 break
-                          
-                    
-                    
-                
+                                          
         # else:
         #     print("Invalid choice. Please try again.")
 
