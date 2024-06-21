@@ -185,7 +185,7 @@ def CarParking():
                                     # print("---------",p1[slot_rows])
 
                                     
-                                    nearest_null_position = find_nearest_null(parking_data, veh_lot,veh_row,veh_pos)
+                                    nearest_null_position = find_nearest_null(parking_data, veh_lot,veh_row,veh_ahead_list[i][0])
                                     nearest_parking, nearest_row, nearest_spot = nearest_null_position
                                     # print(nearest_parking)
                                  
@@ -265,7 +265,7 @@ def CarParking():
                                         else:
                                             veh_lot,veh_row,veh_pos=find_car_position(parking_data,veh)
                                             for i in (range(len(veh_behind_list))):
-                                                nearest_null_position = find_nearest_null(parking_data, veh_lot,veh_row,veh_pos)
+                                                nearest_null_position = find_nearest_null(parking_data, veh_lot,veh_row,veh_behind_list[i][0])
                                                 nearest_parking, nearest_row, nearest_spot = nearest_null_position
                                                 # print("vehicle is in the First slot",i)
                                                 for empty_iter in (range(len(p2))):
